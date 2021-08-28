@@ -25,15 +25,29 @@ class ViewController: UIViewController {
                          choice2: "Check for traps")
     ]
     
+    var userStory = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        storyLabel.text = stories[0].title
-        choice1Button.setTitle(stories[0].choice1, for: .normal)
-        choice2Button.setTitle(stories[0].choice2, for: .normal)
+        userStory = 0
+        updateUI()
     }
 
     @IBAction func choiceMade(_ sender: UIButton) {
+        let userAnswer = sender.currentTitle
+        
+        if userAnswer == "Take a left" {
+            userStory = 1
+        } else {
+            userStory = 2
+        }
+        
+        updateUI()
     }
     
+    func updateUI() {
+        storyLabel.text = stories[userStory].title
+        choice1Button.setTitle(stories[userStory].choice1, for: .normal)
+        choice2Button.setTitle(stories[userStory].choice2, for: .normal)
+    }
 }
-
